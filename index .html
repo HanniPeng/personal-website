@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hanni Peng · 品牌与GTM顾问</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111110;
+      --white: #FAF9F6;
+      --gold: #C8862A;
+      --gold-light: #E8A84A;
+      --gray: #6B6B6B;
+      --gray-light: #E8E6E0;
+      --serif: 'DM Serif Display', 'Noto Serif SC', serif;
+      --sans: 'Noto Sans SC', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 4rem;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      line-height: 1.35;
+      color: var(--black);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+      max-width: 480px;
+    }
+
+    .hero-services {
+      margin: 1.8rem 0 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hero-service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.92rem;
+      color: var(--black);
+    }
+
+    .hero-service-item::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-primary:hover { background: var(--gold); }
+
+    .hero-right {
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo-placeholder {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+
+    .hero-photo-text {
+      color: rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-stat-num span {
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    /* SECTION BASE */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      line-height: 1.3;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ABOUT */
+    .about {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+      line-height: 1.9;
+    }
+
+    .about-text p strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .about-right {
+      border-left: 1px solid var(--gray-light);
+      padding-left: 4rem;
+    }
+
+    .about-brands {
+      margin-top: 2rem;
+    }
+
+    .about-brands-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .about-brand-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .about-brand-tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--gray-light);
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+
+    .about-mission {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .about-mission-text {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .about-mission-sub {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+    }
+
+    /* SERVICES */
+    .services {
+      background: #F4F2ED;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: transform 0.2s;
+    }
+
+    .service-card:hover { transform: translateY(-4px); }
+
+    .service-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--gray-light);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--black);
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .service-line {
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    /* BLOG */
+    .blog { background: var(--white); }
+
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .blog-link {
+      font-size: 0.82rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .blog-card {
+      border-top: 1px solid var(--gray-light);
+      padding-top: 1.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .blog-card:hover { opacity: 0.7; }
+
+    .blog-cat {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .blog-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+      color: var(--black);
+      font-weight: 400;
+    }
+
+    .blog-excerpt {
+      font-size: 0.84rem;
+      color: var(--gray);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 7rem 4rem;
+    }
+
+    .contact .section-title {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .contact-desc {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2.5rem;
+    }
+
+    .contact-method {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-method-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .contact-method-value {
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+
+    .contact-divider {
+      width: 1px;
+      height: 50px;
+      background: rgba(255,255,255,0.1);
+      align-self: center;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--black); }
+
+    /* ANIMATIONS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 1.5rem 3rem; }
+      .hero-right { min-height: 300px; padding: 2rem 1.5rem; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .hero-stat-num { font-size: 2rem; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-right { border-left: none; padding-left: 0; border-top: 1px solid var(--gray-light); padding-top: 3rem; }
+
+      .services-grid { grid-template-columns: 1fr; gap: 2px; }
+      .blog-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .blog-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+      .contact { padding: 5rem 1.5rem; }
+      .contact-methods { flex-direction: column; gap: 2rem; align-items: center; }
+      .contact-divider { display: none; }
+
+      footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Hanni Peng</a>
+    <ul class="nav-links">
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#services">服务</a></li>
+      <li><a href="#blog">文章</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">品牌叙事 · 产品定位 · 营销赋能</div>
+      <h1 class="hero-title">
+        你好，我是 <em>Hanni</em>
+      </h1>
+      <p class="hero-desc" style="font-size:1.05rem; color: var(--black); font-family: var(--serif);">Marketer，从外企打工人到创业者，走了25年。</p>
+      <p class="hero-desc" style="margin-top: 1.2rem; font-family: var(--serif);">现在我聚焦在为科技企业打造品牌故事，<br>为产品出海 Go-to-Market 提供体系方法，<br>帮助营销团队的价值被看见。</p>
+
+      <a href="#contact" class="btn-primary">联系我</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-placeholder">
+        <div class="hero-photo-text">[ 放置你的照片 ]</div>
+      </div>
+      <div class="hero-stats" style="justify-content: center; gap: 4rem;">
+        <div>
+          <div class="hero-stat-num">50<span>+</span></div>
+          <div class="hero-stat-label">服务科技<br>企业</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">200<span>+</span></div>
+          <div class="hero-stat-label">产品与增长<br>文章</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-text fade-in">
+      <div class="section-label">关于我</div>
+      <h2 class="section-title" style="font-family: var(--serif);">有好奇心，喜欢观察，喜欢美，<br>对品味有追求，同时也很喜欢商业。</h2>
+      <p>在诺基亚、IBM、思科、SAP 的工作让我深刻意识到，<strong>品牌的杠杆能够让好产品走向全球。</strong></p>
+      <p>国内科技企业产品性能优异，团队也拼，为什么深陷价格战？答案不是技术，就是缺乏品牌叙事和体系的方法。</p>
+      <p>在做咨询的这段时间，我写过书、出了课程，提出 <strong>GTM 飞轮方法论</strong>和 <strong>STEPS 营销操作系统</strong>。我还是个持续写作者，公众号《时光笔记簿》已经写了快 6 年。</p>
+      <p>现在借助 AI 探索新的营销方法，是我和一群年轻人一直在做的事。我也邀请你一起来，共同进步！</p>
+    </div>
+    <div class="about-right fade-in">
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;">
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="overflow:hidden; aspect-ratio:3/4;">
+            <img src="book.jpg" alt="ToB增长实战" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="font-size:0.75rem; color:var(--gray); text-align:center; letter-spacing:0.05em;">著书</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="overflow:hidden; aspect-ratio:3/4;">
+            <img src="speaking.jpg" alt="演讲" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="font-size:0.75rem; color:var(--gray); text-align:center; letter-spacing:0.05em;">演讲</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+          <div style="overflow:hidden; aspect-ratio:3/4;">
+            <img src="gtm.png" alt="GTM方法论" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div style="font-size:0.75rem; color:var(--gray); text-align:center; letter-spacing:0.05em;">方法论</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="fade-in">
+      <div class="section-label">服务</div>
+      <h2 class="section-title">我能帮你做什么</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-num">01</div>
+        <div class="service-line"></div>
+        <div class="service-title">品牌叙事</div>
+        <div class="service-desc">通过新4P（Persona、Problem、Product、Proposition）的方法，从客户角度出发，用客户听得懂的语言讲好产品故事。搭建品牌信息屋和体系化传播矩阵，让品牌真正成为增长动力。</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">02</div>
+        <div class="service-line"></div>
+        <div class="service-title">GTM 体系</div>
+        <div class="service-desc">从市场洞察、目标客户定义、竞争定位，到渠道选择和上市执行，一套完整的 GTM 方法论，帮你把产品推向对的市场、找到对的客户。</div>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">03</div>
+        <div class="service-line"></div>
+        <div class="service-title">营销团队赋能</div>
+        <div class="service-desc">通过 STEPS 培训，帮助营销团队成长为业务伙伴。同时搭建了 AI 营销社群、GTM 社群、营销灵感社群、CMO 社群，邀请有兴趣的营销人加入，共同进步。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="blog-header fade-in">
+      <div>
+        <div class="section-label">专栏作者</div>
+        <h2 class="section-title">持续输出品牌、产品、成长文章</h2>
+      </div>
+      <a href="https://mp.weixin.qq.com" target="_blank" class="blog-link">查看全部文章 →</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-in">
+        <div class="blog-cat">品牌叙事</div>
+        <div class="blog-title">当广告不再有效，还要做品牌吗？</div>
+        <div class="blog-excerpt">流量越来越贵，广告ROI越来越低，很多企业开始怀疑品牌投入的价值。但真正的问题不是品牌没用，而是大多数企业从来没有真正做过品牌……</div>
+      </div>
+      <div class="blog-card fade-in">
+        <div class="blog-cat">GTM 方法</div>
+        <div class="blog-title">产品GTM，竞争分析到底听谁的？</div>
+        <div class="blog-excerpt">做竞争分析，销售说客户反馈这个，产品说数据显示那个，老板说对标这家，市场说参考那家。众说纷纭之下，GTM策略到底该怎么定？</div>
+      </div>
+      <div class="blog-card fade-in">
+        <div class="blog-cat">营销人成长</div>
+        <div class="blog-title">AI时代，Marketing正在成为最吃香的工作</div>
+        <div class="blog-excerpt">很多人担心AI会取代营销人，但我的判断恰恰相反。懂业务、懂客户、懂品牌叙事的营销人，正在成为AI时代最稀缺的角色……</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-label" style="color: rgba(255,255,255,0.4)">联系我</div>
+    <h2 class="section-title">如果你的产品在品牌或 GTM 上<br>遇到了瓶颈，欢迎聊聊</h2>
+    <div class="contact-methods">
+      <div class="contact-method">
+        <div class="contact-method-label">微信</div>
+        <div class="contact-method-value">hanni895005</div>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-method">
+        <div class="contact-method-label">邮件</div>
+        <div class="contact-method-value">hanni.peng@qq.com</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Hanni Peng · 品牌与 GTM 顾问</p>
+    <div class="footer-links">
+      <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=时光笔记簿" target="_blank">公众号·时光笔记簿</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
