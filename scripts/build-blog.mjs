@@ -258,7 +258,7 @@ ${extraHead}</head>
 <header class="site-header">
   <a href="/" class="logo">Hanni Peng</a>
   <nav>
-    <a href="/blog/"${pagePath === '/blog/' ? ' aria-current="page"' : ''}>笔记</a>
+    <a href="/blog/"${pagePath === '/blog/' ? ' aria-current="page"' : ''}>文章</a>
     <a href="/blog/archive/"${pagePath === '/blog/archive/' ? ' aria-current="page"' : ''}>归档</a>
     <a href="/#about">关于</a>
   </nav>
@@ -297,9 +297,9 @@ function write(rel, html) {
   const recent = posts.slice(0, cfg.postsOnHome);
   const list = recent.length
     ? recent.map((p) => postArticle(p, { linkTitle: true })).join('\n<div class="divider" aria-hidden="true"></div>\n')
-    : '<p class="empty">第一篇笔记即将发布。</p>';
+    : '<p class="empty">第一篇文章即将发布。</p>';
   const more = posts.length > recent.length
-    ? `<p class="more"><a href="/blog/archive/">查看全部 ${posts.length} 篇笔记 →</a></p>` : '';
+    ? `<p class="more"><a href="/blog/archive/">查看全部 ${posts.length} 篇文章 →</a></p>` : '';
   write('blog/index.html', layout({
     title: `${cfg.title} · Hanni Peng`,
     description: cfg.description,
@@ -352,15 +352,15 @@ ${ps.map((p) => `    <li><time datetime="${p.date}">${p.date.slice(5).replace('-
 </section>`;
   }).join('\n');
   write('blog/archive/index.html', layout({
-    title: `全部笔记 · Hanni Peng`,
+    title: `全部文章 · Hanni Peng`,
     description: cfg.description,
     path: '/blog/archive/',
     body: `<div class="page-head">
   <p class="eyebrow">Archive · 归档</p>
-  <h1 class="page-title">全部笔记</h1>
+  <h1 class="page-title">全部文章</h1>
   <p class="page-sub">共 ${posts.length} 篇</p>
 </div>
-${html || '<p class="empty">还没有笔记。</p>'}`,
+${html || '<p class="empty">还没有文章。</p>'}`,
   }));
 }
 
@@ -401,6 +401,29 @@ ${urls.map((u) => `<url><loc>${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}<
 `);
   if (!fs.existsSync(path.join(ROOT, 'robots.txt'))) {
     write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  }
+}
+
+// 网站首页的"文章"区域：自动放最新 3 篇
+{
+  const home = path.join(ROOT, 'index.html');
+  if (fs.existsSync(home)) {
+    const src = fs.readFileSync(home, 'utf8');
+    const re = /(<!-- LATEST_POSTS_START[^>]*-->)[\s\S]*?(\s*<!-- LATEST_POSTS_END -->)/;
+    if (re.test(src)) {
+      const cards = posts.slice(0, 3).map((p) => {
+        const [y, m, d] = p.date.split('-').map(Number);
+        const ex = p.excerpt.length >= 110 ? `${p.excerpt}……` : p.excerpt;
+        return `
+      <a class="blog-card fade-in" href="${p.url}">
+        <div class="blog-cat">${y}年${m}月${d}日</div>
+        <div class="blog-title">${esc(p.title)}</div>
+        <div class="blog-excerpt">${esc(ex)}</div>
+      </a>`;
+      }).join('');
+      const out = src.replace(re, (m0, a, b) => `${a}${cards}${b}`);
+      if (out !== src) fs.writeFileSync(home, out);
+    }
   }
 }
 

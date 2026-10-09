@@ -1,8 +1,8 @@
 {
   "siteUrl": "https://hannipeng.com",
-  "title": "每日笔记",
-  "titleEn": "Daily Notes",
-  "description": "Hanni Peng 的每日笔记：关于品牌、产品、GTM、AI 营销和职场成长的日常思考。",
+  "title": "文章",
+  "titleEn": "Blog",
+  "description": "Hanni Peng 的文章：关于品牌、产品、GTM、AI 营销和职场成长的日常思考，每天更新。",
   "author": "Hanni Peng",
   "timezone": "Asia/Shanghai",
   "postsOnHome": 10,

@@ -392,6 +392,7 @@
     }
 
     .blog-card:hover { opacity: 0.7; }
+    a.blog-card { display: block; text-decoration: none; color: inherit; }
 
     .blog-cat {
       font-size: 0.7rem;
@@ -559,8 +560,7 @@
     <ul class="nav-links">
       <li><a href="#about">关于我</a></li>
       <li><a href="#services">服务</a></li>
-      <li><a href="#blog">文章</a></li>
-      <li><a href="/blog/">笔记</a></li>
+      <li><a href="/blog/">文章</a></li>
       <li><a href="#contact">联系</a></li>
     </ul>
   </nav>
@@ -650,24 +650,16 @@
         <div class="section-label">专栏作者</div>
         <h2 class="section-title">持续输出品牌、产品、成长文章</h2>
       </div>
-      <a href="https://mp.weixin.qq.com" target="_blank" class="blog-link">查看全部文章 →</a>
+      <a href="/blog/" class="blog-link">查看全部文章 →</a>
     </div>
     <div class="blog-grid">
-      <div class="blog-card fade-in">
-        <div class="blog-cat">品牌叙事</div>
-        <div class="blog-title">当广告不再有效，还要做品牌吗？</div>
-        <div class="blog-excerpt">流量越来越贵，广告ROI越来越低，很多企业开始怀疑品牌投入的价值。但真正的问题不是品牌没用，而是大多数企业从来没有真正做过品牌……</div>
-      </div>
-      <div class="blog-card fade-in">
-        <div class="blog-cat">GTM 方法</div>
-        <div class="blog-title">产品GTM，竞争分析到底听谁的？</div>
-        <div class="blog-excerpt">做竞争分析，销售说客户反馈这个，产品说数据显示那个，老板说对标这家，市场说参考那家。众说纷纭之下，GTM策略到底该怎么定？</div>
-      </div>
-      <div class="blog-card fade-in">
-        <div class="blog-cat">营销人成长</div>
-        <div class="blog-title">AI时代，Marketing正在成为最吃香的工作</div>
-        <div class="blog-excerpt">很多人担心AI会取代营销人，但我的判断恰恰相反。懂业务、懂客户、懂品牌叙事的营销人，正在成为AI时代最稀缺的角色……</div>
-      </div>
+      <!-- LATEST_POSTS_START：这里由 scripts/build-blog.mjs 自动生成，不要手动修改 -->
+      <a class="blog-card fade-in" href="/blog/2026-10-09/">
+        <div class="blog-cat">2026年10月9日</div>
+        <div class="blog-title">如果一件事值得做，就值得把它做好</div>
+        <div class="blog-excerpt">Toast 产品副总裁 Maggie Crowley曾代表美国参加冬奥会滑雪项目，大学毕业于哈佛商学院，曾在多家企业从事营销、产品相关工作。 她受邀参加Lenny的播客谈到如何成为优秀的产品经理，有两个点让我印象深刻。 ……</div>
+      </a>
+      <!-- LATEST_POSTS_END -->
     </div>
   </section>
 
