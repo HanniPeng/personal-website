@@ -187,8 +187,14 @@ function convertObsidian(md, p) {
     if (!IMAGE_EXT.has(path.extname(t).toLowerCase())) return ''; // 嵌入其他笔记：不公开
     const src = resolveImage(t, p.file);
     if (!src) { console.warn(`找不到图片：${t}（${p.name}）`); return ''; }
-    const alt = opt && !/^\d+(x\d+)?$/.test(opt) ? opt : '';
-    return `![${alt}](${imageUrl(src)})`;
+    const sized = opt && /^\d+(x\d+)?$/.test(opt.trim());
+    const alt = opt && !sized ? opt : '';
+    if (sized) {
+      // Obsidian 里调整过的图片宽度（![[图.png|462]]）在网页上保持一致
+      const w = Number(opt.trim().split('x')[0]);
+      return `\n\n<img src="${imageUrl(src)}" alt="" loading="lazy" decoding="async" style="width:${w}px">\n\n`;
+    }
+    return `\n\n![${alt}](${imageUrl(src)})\n\n`;
   });
   // ![说明](相对路径)
   s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g, (m, alt, ref) => {
