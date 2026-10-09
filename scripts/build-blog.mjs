@@ -259,6 +259,7 @@ function layout({ title, description, path: pagePath, body, type = 'website', ex
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script src="/assets/wechat-qr.js" defer></script>
 ${extraHead}</head>
 <body>
 <header class="site-header">
@@ -274,7 +275,7 @@ ${body}
 </main>
 <footer class="site-footer">
   <p>© ${(posts[0]?.date || today).slice(0, 4)} Hanni Peng · 品牌与 GTM 顾问</p>
-  <p class="footer-links"><span>公众号 · ${esc(cfg.wechatName)}</span><a href="/blog/feed.xml">RSS</a></p>
+  <p class="footer-links"><a href="#" data-wechat-qr>公众号 · ${esc(cfg.wechatName)}</a><a href="https://www.linkedin.com/in/hanni-peng-5364362b/" target="_blank" rel="noopener">LinkedIn</a><a href="/blog/feed.xml">RSS</a></p>
 </footer>
 </body>
 </html>
