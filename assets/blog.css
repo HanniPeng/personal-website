@@ -18,6 +18,7 @@
   --gray-light: #E8E6E0;
   --serif: 'DM Serif Display', 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
   --sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --body: 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
   --measure: 660px;
 }
 
@@ -31,6 +32,11 @@ body {
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.9;
+}
+.post-body {
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.95;
   -webkit-font-smoothing: antialiased;
 }
 
