@@ -29,12 +29,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 如果在仓库设置里填了 NOTES_REPO（Obsidian 笔记仓库），就从那里读取笔记
+      # Obsidian"灵感笔记"同步到 GitHub 的仓库（只含"每日笔记"文件夹）
       - name: 取回 Obsidian 笔记
-        if: ${{ vars.NOTES_REPO != '' }}
+        id: notes
+        continue-on-error: true
         uses: actions/checkout@v4
         with:
-          repository: ${{ vars.NOTES_REPO }}
+          repository: ${{ vars.NOTES_REPO || 'HanniPeng/daily-notes' }}
           path: _notes
           fetch-depth: 0
 
@@ -46,9 +47,9 @@ jobs:
       - run: npm ci
 
       - name: 生成博客页面
-        env:
-          NOTES_DIR: ${{ vars.NOTES_REPO != '' && format('_notes/{0}', vars.NOTES_SUBDIR || '每日笔记') || 'posts' }}
-        run: node scripts/build-blog.mjs
+        run: |
+          if [ -d "_notes/每日笔记" ]; then export NOTES_DIR="_notes/每日笔记"; else export NOTES_DIR="posts"; fi
+          node scripts/build-blog.mjs
 
       - name: 有变化才提交
         run: |
