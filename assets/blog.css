@@ -146,8 +146,11 @@ h1.post-title { font-size: 2.2rem; }
 .post-body pre { background: #F0EEE8; padding: 1em 1.2em; overflow-x: auto; border-radius: 4px; line-height: 1.6; }
 .post-body pre code { background: none; padding: 0; }
 .post-body mark { background: rgba(232,168,74,.28); color: inherit; padding: 0 .1em; }
-.post-body table { border-collapse: collapse; width: 100%; font-size: .92em; display: block; overflow-x: auto; }
-.post-body th, .post-body td { border-bottom: 1px solid var(--gray-light); padding: .5em .7em; text-align: left; }
+.post-body table { border-collapse: collapse; width: 100%; font-size: .92em; margin: 1.6em 0; }
+.post-body th, .post-body td { border-bottom: 1px solid var(--gray-light); padding: .55em .8em; text-align: left; vertical-align: top; }
+.post-body th { font-weight: 600; color: var(--black); border-bottom: 1.5px solid var(--black); }
+.post-body td:first-child { color: var(--gray); white-space: nowrap; }
+.post-body th:first-child, .post-body td:first-child { padding-left: 0; }
 
 .divider {
   width: 24px;
