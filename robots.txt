@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hannipeng.com/sitemap.xml
+Sitemap: https://www.hannipeng.com/sitemap.xml
