@@ -12,7 +12,7 @@ on:
       - '.github/workflows/publish.yml'
   # 每 30 分钟检查一次：取回 Obsidian 同步过来的新笔记，并放出到了日期的定时笔记
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/15 * * * *'
   # 在 GitHub 的 Actions 页面可以手动点"Run workflow"
   workflow_dispatch:
 
