@@ -10,7 +10,10 @@ on:
       - 'assets/blog.css'
       - 'blog.config.json'
       - '.github/workflows/publish.yml'
-  # 每 30 分钟检查一次：取回 Obsidian 同步过来的新笔记，并放出到了日期的定时笔记
+  # Obsidian 推送新笔记后，daily-notes 仓库会立即发来通知
+  repository_dispatch:
+    types: [notes-updated]
+  # 定时检查：放出到了日期的定时笔记（GitHub 会限流，只作兜底）
   schedule:
     - cron: '*/15 * * * *'
   # 在 GitHub 的 Actions 页面可以手动点"Run workflow"
