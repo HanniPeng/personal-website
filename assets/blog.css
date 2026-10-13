@@ -108,7 +108,7 @@ h1.post-title { font-size: 2.2rem; }
 .post-title a:hover { color: var(--gold); }
 
 .post-body > * + * { margin-top: 1.15em; }
-.post-body p, .post-body li { letter-spacing: .02em; text-align: justify; overflow-wrap: break-word; }
+.post-body p { letter-spacing: .02em; }
 .post-body a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(200,134,42,.35); }
 .post-body a:hover { border-bottom-color: var(--gold); }
 .post-body strong { color: var(--black); font-weight: 600; }
